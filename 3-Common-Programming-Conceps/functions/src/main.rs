@@ -1,8 +1,11 @@
-fn main() {
-    hello_world();
+use std::io;
 
-    let sum: String = sum(1,2).to_string();
-    println!("{}", sum);
+
+fn main() {
+    calculate();
+
+    // let sum1: String = sum(1,2).to_string();
+    // println!("{}", sum1);
 
     /*
         Statements are instructions that perform some action and do not return a value.
@@ -27,15 +30,65 @@ fn main() {
     };
 }
 
-fn hello_world(){
-    println!("Hello, world!");
+fn sum(a: i64, b: i64) -> i64 {
+    a + b
 }
 
-
-fn sum(a: i32, b: i32) -> i32 {
-    return a + b;
-}
-
-fn multiply(a: i32, b: i32) -> i32{
+fn multiply(a: i64, b: i64) -> i64{
     a * b
+}
+
+fn divide(a: i64, b: i64) -> i64{
+    a / b
+}
+
+fn subtract(a: i64, b: i64) -> i64{
+    a - b
+}
+
+fn calculate(){
+    loop {
+        let mut n1 = String::new();
+        let mut n2 = String::new();
+        let mut operation = String::new();
+
+        println!("Input value 1");
+        io::stdin()
+            .read_line(&mut n1)
+            .expect("Failed to read line");
+        let n1: i64 = match n1.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Invalid input. Please enter a number.");
+                continue;
+            }
+        };
+
+        println!("Input value 2");
+        io::stdin()
+            .read_line(&mut n2)
+            .expect("Failed to read line");
+        let n2: i64 = match n2.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Invalid input. Please enter a number.");
+                continue;
+            }
+        };
+
+        println!("Operation (mul, div, sum, sub)");
+        io::stdin()
+            .read_line(&mut operation)
+            .expect("Failed to read line");
+
+        let operation = operation.trim();
+
+        match operation {
+            "mul" => println!("Result: {}", multiply(n1, n2)),
+            "div" => println!("Result: {}", divide(n1, n2)),
+            "sum" => println!("Result: {}", sum(n1, n2)),
+            "sub" => println!("Result: {}", subtract(n1, n2)),
+            _ => println!("Invalid operation"),
+        }
+    }
 }
