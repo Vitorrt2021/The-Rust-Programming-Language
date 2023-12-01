@@ -6,6 +6,11 @@ struct Transaction {
     amount: u64,
     capture_method: String,
 }
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+
+struct AlwaysEqual;
+
 
 fn main() {
     let transaction = Transaction {
@@ -24,15 +29,35 @@ fn main() {
 
     transaction_2.amount = 200;
 
-    let transaction_3 = build_transaction(122, 3, "contactless");
+    let transaction_3 = build_transaction(122, 3, String::from("contactless"));
+
+    let transaction_pix = Transaction {
+        capture_method: String::from("pix"),
+        ..transaction_3
+    };
+
+    let black = Color(0, 0, 0);
+    let origin = Point(0, 0, 0);
+
+    let subject = AlwaysEqual;
+
 }
 
 
-fn build_transaction(amount: u64, user_id: u64, capture_method: &str) -> Transaction {
+fn build_transaction(amount: u64, user_id: u64, capture_method: String) -> Transaction {
     Transaction {
         id: Uuid::new_v4(),
         user_id: user_id,
         amount: amount,
-        capture_method: String::from(capture_method),
+        capture_method,
+    }
+}
+
+fn build_transaction_shorthand(amount: u64, user_id: u64, capture_method: String) -> Transaction {
+    Transaction {
+        id: Uuid::new_v4(),
+        user_id,
+        amount,
+        capture_method,
     }
 }
