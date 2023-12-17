@@ -4,6 +4,7 @@ This repository is dedicated to tracking my progress in studying "The Rust Progr
 
 ## Book Information
 
+
 - **Title:** [The Rust Programming Language](https://doc.rust-lang.org/stable/book/title-page.html)
 - **Author:** Steve Klabnik and Carol Nichols
 - **Version:** Rust 1.67.1
