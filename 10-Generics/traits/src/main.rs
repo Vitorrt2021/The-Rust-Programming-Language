@@ -1,5 +1,7 @@
 pub trait Summary {
-    fn summarize(&self) -> String;
+    fn summarize(&self) -> String {
+        String::from("(Read more...)")
+    }
 }
 
 pub struct NewsArticle {
@@ -28,6 +30,19 @@ impl Summary for Tweet {
     }
 }
 
+fn tweet(){
+    let tweet = Tweet {
+        username: String::from("horse_ebooks"),
+        content: String::from(
+            "of course, as you probably already know, people",
+        ),
+        reply: false,
+        retweet: false,
+    };
+
+    println!("1 new tweet: {}", tweet.summarize());
+}
+
 fn main() {
-    println!("Hello, world!");
+    tweet();
 }
