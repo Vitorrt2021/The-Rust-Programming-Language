@@ -1,3 +1,5 @@
+use pointers::reference_counted;
+
 fn main() {
-    println!("Hello, world!");
+    reference_counted();
 }
